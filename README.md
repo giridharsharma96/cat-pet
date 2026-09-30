@@ -38,24 +38,6 @@ All **80 original messages** are included, with no immediate repeats within a ca
 
 Release build: zero warnings/errors; all 17 core tests passed. The standalone executable and an extracted ZIP passed startup, artwork rendering, animation timing, speech-bubble, paw-icon, idle-API, preference, and clean-shutdown checks. Actual mouse dragging, tray interaction, long idle/session transitions, and multiple-monitor/DPI behavior still require manual acceptance checks.
 
-### Build from source
-
-Download [CatPet-source.zip](https://github.com/giridharsharma96/cat-pet/releases/download/windows-v1.0.0/CatPet-source.zip) and extract it. The source archive includes the Windows implementation, macOS source, and original artwork.
-
-For Windows, install the **.NET 10 SDK**, open PowerShell in the extracted folder, and run:
-
-```powershell
-.\windows\build.ps1 -Configuration Release
-```
-
-The script builds the app, runs the core tests, and prints the output folder. Run **Cat Pet.exe** from that folder. To create a verified, self-contained Windows release:
-
-```powershell
-.\windows\publish.ps1
-```
-
-For macOS build instructions, see `MACOS-DEVELOPMENT.md` in the source archive. A ready-to-run download requires no developer tools.
-
 ## Download for macOS
 
 Download the ready-to-run Apple Silicon ZIP from the [macOS 1.2.0 release](https://github.com/giridharsharma96/cat-pet/releases/tag/v1.2.0).
