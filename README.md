@@ -1,8 +1,8 @@
 # Cat Pet
 
-A tiny native macOS desktop companion that lives above your windows, follows your pointer, reacts to what you are doing, and takes the occasional nap.
+A tiny native desktop cat companion for macOS and Windows. It stays above your windows, follows your pointer, plays animations, and reacts with fun, quirky messages.
 
-> **Apple Silicon only** · Requires macOS 12 Monterey or later
+> **macOS:** Apple Silicon, macOS 12 Monterey or later · **Windows:** Windows 11 x64 (also tested through x64 emulation on Windows ARM).
 
 ## Preview
 
@@ -10,9 +10,55 @@ A tiny native macOS desktop companion that lives above your windows, follows you
   <img width="192" height="208" alt="Cat Pet desktop companion" src="https://github.com/user-attachments/assets/7f29e1ed-c275-4c4f-9b62-933faa60788c" />
 </p>
 
-## Download
+## Download for Windows
 
-Download the latest ready-to-run ZIP from the [Releases page](https://github.com/giridharsharma96/cat-pet/releases/latest).
+Get the [Windows release](https://github.com/giridharsharma96/cat-pet/releases/tag/windows-v1.0.0):
+
+- [Cat Pet.exe — standalone application](https://github.com/giridharsharma96/cat-pet/releases/download/windows-v1.0.0/Cat.Pet.exe)
+- [CatPet-Windows-x64.zip](https://github.com/giridharsharma96/cat-pet/releases/download/windows-v1.0.0/CatPet-Windows-x64.zip)
+
+Download **Cat Pet.exe** and double-click it, or extract the ZIP and run the executable inside. **All artwork and the .NET runtime are included in the executable.** There is no installer, separate Assets folder, SDK setup, or administrator requirement. Quit an older running copy before switching to the new one.
+
+Right-click the cat or the **paw icon in the Windows notification area** for controls. If the paw is hidden, check the notification-area overflow. Drag the cat to move it.
+
+### Windows controls and messages
+
+- **Idle (Default)**, **Walk Left Once**, **Walk Right Once**, **Sleep Briefly**, and **Groom Once** select the same animations. Manual sleep lasts about three seconds.
+- **Face Pointer** uses eight directional poses while the cat is idle.
+- **App Reactions** shows the same original quirky messages when the foreground app changes.
+- **Idle Chatter** starts after five minutes without keyboard/mouse activity, then repeats every five to ten minutes. New activity resets the countdown. Locking or suspending Windows pauses chatter; returning adds a five-minute grace period.
+- **Say Something** displays a general quirky message immediately.
+- **Quit Cat Pet** closes the app and removes its tray icon.
+
+All **80 original messages** are included, with no immediate repeats within a category. Face Pointer, App Reactions, and Idle Chatter default on and persist in `%LOCALAPPDATA%\CatPet\settings.json`.
+
+**Windows limitations:** Automatic ten-second naps and browser-site detection are not implemented yet. Browser app reactions are generic; the app does not read tabs or website addresses. The cat stays where you place it and does not move autonomously.
+
+### Windows verification
+
+Release build: zero warnings/errors; all 17 core tests passed. The standalone executable and an extracted ZIP passed startup, artwork rendering, animation timing, speech-bubble, paw-icon, idle-API, preference, and clean-shutdown checks. Actual mouse dragging, tray interaction, long idle/session transitions, and multiple-monitor/DPI behavior still require manual acceptance checks.
+
+### Build from source
+
+Download [CatPet-source.zip](https://github.com/giridharsharma96/cat-pet/releases/download/windows-v1.0.0/CatPet-source.zip) and extract it. The source archive includes the Windows implementation, macOS source, and original artwork.
+
+For Windows, install the **.NET 10 SDK**, open PowerShell in the extracted folder, and run:
+
+```powershell
+.\windows\build.ps1 -Configuration Release
+```
+
+The script builds the app, runs the core tests, and prints the output folder. Run **Cat Pet.exe** from that folder. To create a verified, self-contained Windows release:
+
+```powershell
+.\windows\publish.ps1
+```
+
+For macOS build instructions, see `MACOS-DEVELOPMENT.md` in the source archive. A ready-to-run download requires no developer tools.
+
+## Download for macOS
+
+Download the ready-to-run Apple Silicon ZIP from the [macOS 1.2.0 release](https://github.com/giridharsharma96/cat-pet/releases/tag/v1.2.0).
 
 1. Download `Cat-Pet-1.2.0-macOS-arm64.zip`.
 2. Unzip it and move **Cat Pet.app** to your **Applications** folder.
@@ -26,7 +72,7 @@ See [Apple's official instructions for opening an app from an unidentified devel
 
 > **Security notice:** Only choose **Open Anyway** if you downloaded Cat Pet from this repository and trust the file. The current release is not Developer ID signed or notarized, so Apple has not checked it for known malware. Do not disable Gatekeeper globally.
 
-## Features
+## macOS features
 
 - Transparent, always-on-top 192×208 desktop companion
 - Drag the cat around your screen with left- and right-facing walk animations
@@ -38,7 +84,7 @@ See [Apple's official instructions for opening an app from an unidentified devel
 - Menu-bar and right-click controls
 - No third-party runtime or network connection required
 
-## Menu-bar controls
+## macOS menu-bar controls
 
 Click the **paw icon** in the macOS menu bar to open Cat Pet's controls. You can also right-click the cat for quick access. A checkmark next to a setting means that feature is enabled.
 
@@ -78,9 +124,11 @@ Optional Browser Site Detection reads the active tab only to extract its hostnam
 | macOS | 12 Monterey or later |
 | Apple Silicon | Yes (arm64) |
 | Intel Mac | Not supported by the current download |
+| Windows | Windows 11 x64; also tested with x64 emulation on Windows ARM |
+| Installation / .NET setup on Windows | Not required for the executable download |
 | Internet connection | Not required |
 
-## Current release
+## Current macOS release
 
 **Cat Pet 1.2.0 (build 3)**
 
